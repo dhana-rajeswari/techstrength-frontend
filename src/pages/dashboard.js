@@ -772,7 +772,7 @@ const updateEmployee = async (updatedEmployee) => {
     }
   );
 
-  await res.json();
+  const data = await res.json();
 
   setEmployees(prev =>
     prev.map(emp =>
@@ -804,7 +804,8 @@ useEffect(() => {
 
       setEmployees(normalized);
 
-    } catch (error) {
+    } 
+    catch (error) {
       console.log("Backend not running. UI still works.");
       setEmployees([]);
     }
