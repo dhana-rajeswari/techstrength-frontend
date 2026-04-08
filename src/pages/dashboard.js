@@ -3,7 +3,6 @@ import "./dashboard.css";
 import { FiEdit, FiEye, FiTrash } from "react-icons/fi";
 import { useNavigate, Routes, Route } from "react-router-dom";
 import EmployeeProfile from "./EmployeeProfile";
-import { response } from "express";
 
 
 // ─────────────────────────────────────────────────────
@@ -46,11 +45,11 @@ proficiency: Array.isArray(employee.proficiency)
  const handleChange = (e) => {
   setForm({ ...form, [e.target.name]: e.target.value });
 };
+
 const handleSubmit = async (e) => {
   e.preventDefault();
 
   try {
-
     const skillsArray = form.skills.split(",").map(s => s.trim());
 
     const profArray = form.proficiency
@@ -760,40 +759,29 @@ const deleteEmployee = async (id) => {
   }
 
 };
+
 const updateEmployee = async (updatedEmployee) => {
 
-  try {
-
-    const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/updateEmployee.php`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(updatedEmployee)
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error(`Server error: ${response.status}`);
+  const res = await fetch(
+    "https://yourapi.com/tech-api/updateEmployee.php",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(updatedEmployee)
     }
+  );
 
-    const data = await response.json();
+  await res.json();
 
-    console.log("API response:", data);
+  setEmployees(prev =>
+    prev.map(emp =>
+      emp.id === updatedEmployee.id ? updatedEmployee : emp
+    )
+  );
 
-    setEmployees(prev =>
-      prev.map(emp =>
-        emp.id === updatedEmployee.id ? updatedEmployee : emp
-      )
-    );
-
-    setShowEdit(false);
-
-  } catch (error) {
-    console.error("Update error:", error);
-  }
+  setShowEdit(false);
 };
 useEffect(() => {
   const loadEmployees = async () => {
