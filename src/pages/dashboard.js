@@ -46,25 +46,21 @@ proficiency: Array.isArray(employee.proficiency)
  const handleChange = (e) => {
   setForm({ ...form, [e.target.name]: e.target.value });
 };
-
 const handleSubmit = async (e) => {
   e.preventDefault();
 
- try {
-  const skillsArray = form.skills.split(",").map(s => s.trim());
+  try {
 
-  const profArray = form.proficiency
-    .split(",")
-    .map(p => Number(p.trim()));
+    const skillsArray = form.skills.split(",").map(s => s.trim());
 
-  const bars = skillsArray.map((skill, i) => [
-    skill,
-    profArray[i] || 70
-  ]);
+    const profArray = form.proficiency
+      .split(",")
+      .map(p => Number(p.trim()));
 
-} catch (error) {
-  console.error("Error:", error);
-}
+    const bars = skillsArray.map((skill, i) => [
+      skill,
+      profArray[i] || 70
+    ]);
 
     const employeeData = {
       ...form,
