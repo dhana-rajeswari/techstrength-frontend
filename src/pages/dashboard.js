@@ -768,7 +768,7 @@ const updateEmployee = async (updatedEmployee) => {
     }
   );
 
-  const data = await res.json();
+  await res.json();
 
   setEmployees(prev =>
     prev.map(emp =>
