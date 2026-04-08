@@ -3,6 +3,7 @@ import "./dashboard.css";
 import { FiEdit, FiEye, FiTrash } from "react-icons/fi";
 import { useNavigate, Routes, Route } from "react-router-dom";
 import EmployeeProfile from "./EmployeeProfile";
+import { response } from "express";
 
 
 // ─────────────────────────────────────────────────────
@@ -759,29 +760,40 @@ const deleteEmployee = async (id) => {
   }
 
 };
-
 const updateEmployee = async (updatedEmployee) => {
 
-  const res = await fetch(
-    "https://yourapi.com/tech-api/updateEmployee.php",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(updatedEmployee)
+  try {
+
+    const response = await fetch(
+      `${process.env.REACT_APP_API_URL}/updateEmployee.php`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(updatedEmployee)
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.status}`);
     }
-  );
 
-  await res.json();
+    const data = await response.json();
 
-  setEmployees(prev =>
-    prev.map(emp =>
-      emp.id === updatedEmployee.id ? updatedEmployee : emp
-    )
-  );
+    console.log("API response:", data);
 
-  setShowEdit(false);
+    setEmployees(prev =>
+      prev.map(emp =>
+        emp.id === updatedEmployee.id ? updatedEmployee : emp
+      )
+    );
+
+    setShowEdit(false);
+
+  } catch (error) {
+    console.error("Update error:", error);
+  }
 };
 useEffect(() => {
   const loadEmployees = async () => {
