@@ -50,17 +50,21 @@ proficiency: Array.isArray(employee.proficiency)
 const handleSubmit = async (e) => {
   e.preventDefault();
 
-  try {
-    const skillsArray = form.skills.split(",").map(s => s.trim());
+ try {
+  const skillsArray = form.skills.split(",").map(s => s.trim());
 
-    const profArray = form.proficiency
-      .split(",")
-      .map(p => Number(p.trim()));
+  const profArray = form.proficiency
+    .split(",")
+    .map(p => Number(p.trim()));
 
-    const bars = skillsArray.map((skill, i) => [
-      skill,
-      profArray[i] || 70
-    ]);
+  const bars = skillsArray.map((skill, i) => [
+    skill,
+    profArray[i] || 70
+  ]);
+
+} catch (error) {
+  console.error("Error:", error);
+}
 
     const employeeData = {
       ...form,
