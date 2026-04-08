@@ -69,53 +69,48 @@ const handleSubmit = async (e) => {
       id: employee?.id
     };
 
-    // decide API
-    const url = employee
-      ? fetch(`${process.env.REACT_APP_API_URL}/updateEmployee.php`)
-      : fetch(`${process.env.REACT_APP_API_URL}/addEmployee.php`)
+ // decide API URL
+const url = employee
+  ? `${process.env.REACT_APP_API_URL}/updateEmployee.php`
+  : `${process.env.REACT_APP_API_URL}/addEmployee.php`;
 
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(employeeData)
-    });
+const response = await fetch(url, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(employeeData)
+});
 
-    const data = await response.json();
+const data = await response.json();
 
-    if (!data || !data.id) {
-      console.error("Employee save failed", data);
-      return;
-    }
+if (!data || !data.id) {
+  console.error("Employee save failed", data);
+  return;
+}
 
-    const newEmployee = {
-      id: data.id,
-      initials: form.name
-        .split(" ")
-        .map(n => n[0])
-        .join("")
-        .toUpperCase(),
+const newEmployee = {
+  id: data.id,
+  initials: form.name
+    .split(" ")
+    .map(n => n[0])
+    .join("")
+    .toUpperCase(),
 
-      name: form.name,
-      empId: String(data.id).slice(-5),
-      joined: form.doj,
-      dept: form.role,
-      exp: form.exp,
-      projectsList: form.projects,
-      skills: skillsArray,
-      bars: bars,
-      email: form.email,
-      mobile: form.mobile
-    };
-
-    onSave(newEmployee);
-    onClose();
-
-  } catch (error) {
-    console.error("Save error:", error);
-  }
+  name: form.name,
+  empId: String(data.id).slice(-5),
+  joined: form.doj,
+  dept: form.role,
+  exp: form.exp,
+  projectsList: form.projects,
+  skills: skillsArray,
+  bars: bars,
+  email: form.email,
+  mobile: form.mobile
 };
+
+onSave(newEmployee);
+onClose();
 
   return (
     <form onSubmit={handleSubmit}>
