@@ -758,7 +758,7 @@ const deleteEmployee = async (id) => {
 const updateEmployee = async (updatedEmployee) => {
 
   const res = await fetch(
-    "https://yourapi.com/tech-api/updateEmployee.php",
+    `${process.env.REACT_APP_API_URL}/updateEmployee.php`,
     {
       method: "POST",
       headers: {
