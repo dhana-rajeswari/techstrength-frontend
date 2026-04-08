@@ -1,14 +1,16 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/dashboard";
+import EmployeeProfile from "./pages/EmployeeProfile";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-      </Routes>
-    </Router>
+    <Routes>
+
+      <Route path="/" element={<Dashboard />} />
+
+      <Route path="/employee/:id" element={<EmployeeProfile />} />
+
+    </Routes>
   );
 }
 

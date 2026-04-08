@@ -1,0 +1,259 @@
+/* ===== PAGE BACKGROUND ===== */
+
+body{
+  background:linear-gradient(135deg,#eef3f9,#dfe9f3);
+  font-family:"Times New Roman", serif;
+  margin:0;
+  padding:0;
+  min-height:100vh;
+}
+
+
+/* ===== MAIN PROFILE CARD ===== */
+
+.resume-container{
+  width:100%;
+  max-width:1200px;
+  min-height:650px;
+  margin:40px auto;
+  padding:35px 40px;
+  background:white;
+  border-radius:14px;
+  box-shadow:0 15px 35px rgba(0,0,0,0.15);
+  position:relative;
+}
+
+
+/* ===== DISMISS / CLOSE BUTTON ===== */
+
+.resume-close{
+  position:absolute;
+  top:20px;
+  right:25px;
+  width:36px;
+  height:36px;
+  border:none;
+  border-radius:8px;
+  background:rgba(255,255,255,0.25);
+  color:white;
+  font-size:20px;
+  font-weight:bold;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:0.3s;
+}
+
+.resume-close:hover{
+  background:white;
+  color:#1a3a5c;
+}
+
+
+/* ===== HEADER ===== */
+
+.resume-header{
+  background:linear-gradient(135deg,#2e5f97,#244c79);
+  color:white;
+  padding:30px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+
+/* ===== AVATAR ===== */
+
+.resume-avatar{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  background:#3e6da6;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  font-weight:bold;
+  color:white;
+}
+
+
+/* ===== NAME ===== */
+
+.resume-header h1{
+  font-size:28px;
+  margin:0;
+}
+
+.resume-role{
+  font-size:15px;
+  opacity:0.9;
+}
+
+
+/* ===== CONTACT DETAILS BOX ===== */
+
+.resume-info{
+  margin-top:20px;
+  background:#f7fafd;
+  border:1px solid #d6e4f0;
+  border-radius:10px;
+  padding:25px;
+
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.resume-info p{
+  font-size:15px;
+  color:#1a3a5c;
+  margin:0;
+}
+
+
+/* ===== SECTION TITLES ===== */
+
+.resume-section{
+  margin-top:30px;
+}
+
+.resume-section h2{
+  font-size:22px;
+  font-weight:bold;
+  color:black;
+  margin-bottom:12px;
+}
+
+
+/* ===== SKILLS ===== */
+
+.skills-container{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.skill-badge{
+  background:#eef4fb;
+  border:1px solid #c2d8ec;
+  padding:6px 12px;
+  border-radius:6px;
+  font-size:13px;
+  font-weight:600;
+  color:#1e6fc5;
+}
+
+
+/* ===== PROJECT CARDS ===== */
+
+.project-card{
+  background:#f7fafd;
+  border:1px solid #d6e4f0;
+  border-left:5px solid #1e6fc5;
+  border-radius:10px;
+  padding:20px;
+  margin-top:18px;
+}
+
+
+/* ===== CLICKABLE PROJECT TITLE ===== */
+
+.project-title{
+  font-size:18px;
+  font-weight:700;
+  color:#1a3a5c;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.project-title:hover{
+  color:#1e6fc5;
+}
+
+
+/* ===== PROJECT LIST ===== */
+
+.project-list{
+  margin-left:18px;
+  margin-top:10px;
+}
+
+.project-list li{
+  font-size:14px;
+  color:#4b6a8a;
+  margin-bottom:6px;
+}
+
+
+/* ===== BUTTONS ===== */
+
+.resume-actions{
+  margin-top:30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.resume-actions button{
+  padding:10px 22px;
+  border-radius:8px;
+  border:none;
+  background:linear-gradient(135deg,#1e6fc5,#1a3a5c);
+  color:white;
+  cursor:pointer;
+  font-size:14px;
+  font-weight:600;
+  transition:0.3s;
+}
+
+.resume-actions button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+
+/* ===== MOBILE RESPONSIVE ===== */
+
+@media(max-width:900px){
+
+  .resume-container{
+    width:95%;
+    padding:25px;
+  }
+
+  .resume-info{
+    grid-template-columns:1fr;
+  }
+
+  .resume-actions{
+    flex-direction:column;
+    gap:10px;
+  }
+
+}
+/* ===== MODAL OVERLAY ===== */
+
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  background:#1a3a5c44;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:1000;
+  padding:30px;
+}
+
+/* make modal scroll inside */
+.resume-container{
+  width:100%;
+  max-width:1200px;
+  max-height:90vh;
+  overflow:auto;
+}

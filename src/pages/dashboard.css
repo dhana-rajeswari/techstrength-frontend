@@ -983,3 +983,126 @@ body {
     transition: color 0.2s;
     margin: 15px 5px 0 0;
 }
+.project-block{
+  border:1px solid #e3e3e3;
+  padding:15px;
+  border-radius:8px;
+  margin-bottom:15px;
+  background:#fafafa;
+}
+
+.btn-add-project{
+  margin-top:10px;
+  padding:10px 14px;
+  border:none;
+  background:#2f6fad;
+  color:white;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.btn-add-project:hover{
+  background:#1f5c96;
+}
+
+.btn-delete-project{
+  margin-top:8px;
+  background:#e74c3c;
+  color:white;
+  border:none;
+  padding:6px 10px;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+.btn-delete-project:hover{
+  background:#c0392b;
+}
+body{
+  background: linear-gradient(135deg,#eef3f9,#dfe9f3);
+  font-family: "Segoe UI", sans-serif;
+}
+/* Projects container */
+.project-block{
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  border-radius:10px;
+  padding:16px;
+  margin-bottom:12px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+/* Project input */
+.project-block .form-input{
+  width:100%;
+  padding:10px 12px;
+  border:1px solid #cbd5e1;
+  border-radius:8px;
+  font-size:14px;
+  outline:none;
+  transition:0.2s;
+}
+
+/* Focus effect */
+.project-block .form-input:focus{
+  border-color:#2563eb;
+  box-shadow:0 0 0 2px rgba(37,99,235,0.1);
+}
+
+/* Project description textarea */
+.project-block .form-textarea{
+  width:100%;
+  padding:10px 12px;
+  border:1px solid #cbd5e1;
+  border-radius:8px;
+  font-size:14px;
+  resize:none;
+  outline:none;
+  min-height:80px;
+  transition:0.2s;
+}
+
+.project-block .form-textarea:focus{
+  border-color:#2563eb;
+  box-shadow:0 0 0 2px rgba(37,99,235,0.1);
+}
+
+/* Delete project button */
+.btn-delete-project{
+  background:#ef4444;
+  color:white;
+  border:none;
+  padding:8px 12px;
+  border-radius:6px;
+  cursor:pointer;
+  width:140px;
+  font-size:13px;
+}
+
+.btn-delete-project:hover{
+  background:#dc2626;
+}
+
+/* Add project button */
+.btn-add-project{
+  margin-top:10px;
+  background:#2563eb;
+  color:white;
+  border:none;
+  padding:10px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:14px;
+}
+
+.btn-add-project:hover{
+  background:#1d4ed8;
+}
+.no-data{
+text-align:center;
+padding:40px;
+font-size:18px;
+color:#666;
+}
