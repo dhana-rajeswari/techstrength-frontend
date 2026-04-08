@@ -49,7 +49,7 @@ proficiency: Array.isArray(employee.proficiency)
 const handleSubmit = async (e) => {
   e.preventDefault();
 
-  try {
+try{
 
     const skillsArray = form.skills.split(",").map(s => s.trim());
 
@@ -111,8 +111,10 @@ const handleSubmit = async (e) => {
 
     onSave(newEmployee);
     onClose();
+  
 
-  } catch (error) {
+}
+catch (error) {
     console.error("Save error:", error);
   }
 };
