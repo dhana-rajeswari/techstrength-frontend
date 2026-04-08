@@ -74,15 +74,27 @@ const url = employee
   ? `${process.env.REACT_APP_API_URL}/updateEmployee.php`
   : `${process.env.REACT_APP_API_URL}/addEmployee.php`;
 
-const response = await fetch(url, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify(employeeData)
-});
+try {
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(employeeData)
+  });
 
-const data = await response.json();
+  // check if request failed
+  if (!response.ok) {
+    throw new Error(`Server error: ${response.status}`);
+  }
+
+  const data = await response.json();
+
+  console.log("API response:", data);
+
+} catch (error) {
+  console.error("Save error:", error);
+}
 
 if (!data || !data.id) {
   console.error("Employee save failed", data);
