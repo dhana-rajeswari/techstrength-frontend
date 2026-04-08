@@ -49,13 +49,14 @@ proficiency: Array.isArray(employee.proficiency)
 const handleSubmit = async (e) => {
   e.preventDefault();
 
-try{
-
-    const skillsArray = form.skills.split(",").map(s => s.trim());
+  try {
+    const skillsArray = form.skills
+      ? form.skills.split(",").map(s => s.trim())
+      : [];
 
     const profArray = form.proficiency
-      .split(",")
-      .map(p => Number(p.trim()));
+      ? form.proficiency.split(",").map(p => Number(p.trim()))
+      : [];
 
     const bars = skillsArray.map((skill, i) => [
       skill,
@@ -69,10 +70,9 @@ try{
       id: employee?.id
     };
 
-    // decide API
     const url = employee
-      ? fetch(`${process.env.REACT_APP_API_URL}/updateEmployee.php`)
-      : fetch(`${process.env.REACT_APP_API_URL}/addEmployee.php`)
+      ? `${process.env.REACT_APP_API_URL}/updateEmployee.php`
+      : `${process.env.REACT_APP_API_URL}/addEmployee.php`;
 
     const response = await fetch(url, {
       method: "POST",
@@ -81,6 +81,10 @@ try{
       },
       body: JSON.stringify(employeeData)
     });
+
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.status}`);
+    }
 
     const data = await response.json();
 
@@ -91,33 +95,23 @@ try{
 
     const newEmployee = {
       id: data.id,
-      initials: form.name
-        .split(" ")
-        .map(n => n[0])
-        .join("")
-        .toUpperCase(),
-
       name: form.name,
-      empId: String(data.id).slice(-5),
-      joined: form.doj,
       dept: form.role,
       exp: form.exp,
-      projectsList: form.projects,
-      skills: skillsArray,
-      bars: bars,
       email: form.email,
-      mobile: form.mobile
+      mobile: form.mobile,
+      skills: skillsArray,
+      bars: bars
     };
 
     onSave(newEmployee);
     onClose();
-  
 
-}
-catch (error) {
+  } catch (error) {
     console.error("Save error:", error);
   }
 };
+
 
   return (
     <form onSubmit={handleSubmit}>
